@@ -1,7 +1,7 @@
 pub use elf::types::{PF_R, PF_W, PF_X};
 use libc::{c_int, dl_iterate_phdr, dl_phdr_info};
 pub use libc::{
-    PF_MASKPROC, PT_DYNAMIC, PT_GNU_EH_FRAME, PT_GNU_RELRO, PT_HIOS, PT_HIPROC, PT_INTERP, PT_LOAD,
+    PT_DYNAMIC, PT_GNU_EH_FRAME, PT_GNU_RELRO, PT_HIOS, PT_HIPROC, PT_INTERP, PT_LOAD,
     PT_LOOS, PT_LOPROC, PT_NOTE, PT_NULL, PT_PHDR, PT_SHLIB, PT_TLS,
 };
 use std::{
@@ -153,9 +153,6 @@ impl Debug for ProgramHeader {
         }
         if flags & PF_R.0 != 0 {
             flag_strs.push("PF_R");
-        }
-        if flags & PF_MASKPROC != 0 {
-            flag_strs.push("PF_MASKPROC");
         }
         to_write.push_str(&format!("flags=<{}>, ", flag_strs.join("|")));
 
